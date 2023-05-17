@@ -24,7 +24,7 @@ void display(struct node **head)
 		}
 	}
 }
-*/
+
 
 //INSERTION END AT THE END OF DOUBLY LINKED LIST
 void insertAtEnd(struct node **head)
@@ -50,6 +50,41 @@ void insertAtEnd(struct node **head)
 		p->right=fourth;
 		fourth->left=p;
 	}
+}
+*/
+//INSERT AT SPECIFIED POSITION
+void insertAtSpecifiedPosition(struct node **head)
+{
+	int position,value;
+	printf("Enter position and value:");
+	scanf("%d%d",&position,&value);
+	struct node *temp=(struct node*)malloc(sizeof(struct node*));
+	temp->data=value;
+	temp->left=NULL;
+	temp->right=NULL;
+	struct node *p=*head;
+	int count=1;
+	while(p!=NULL)
+	{
+		if(count==position)
+		{
+			break;
+		}
+		p=p->right;
+		count++;
+	}
+	if(p==NULL)
+	{
+		printf("Invalid posititon\n");
+	}
+	else
+	{
+		temp->right=p->right;
+		p->right->left=temp;
+		p->right=temp;
+		temp->left=p;
+	}
+	printf("Inserting element at specified position in doubly linkedlist was successfully completed\n");
 }
 	int main()
 {
@@ -77,11 +112,12 @@ void insertAtEnd(struct node **head)
 		{
 			insertAtEnd(&head);
 		}
-		/*
+		
 		else if(choice==2)
 		{
 			insertAtSpecifiedPosition(&head);
 		}
+		/*
 		else if(choice==3)
 		{
 			deleteAtSpecifiedPosition(&head);
