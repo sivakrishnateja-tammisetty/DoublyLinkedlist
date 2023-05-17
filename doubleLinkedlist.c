@@ -51,7 +51,7 @@ void insertAtEnd(struct node **head)
 		fourth->left=p;
 	}
 }
-*/
+
 //INSERT AT SPECIFIED POSITION
 void insertAtSpecifiedPosition(struct node **head)
 {
@@ -86,6 +86,43 @@ void insertAtSpecifiedPosition(struct node **head)
 	}
 	printf("Inserting element at specified position in doubly linkedlist was successfully completed\n");
 }
+*/
+//DELETION OF A NODE
+void deletion(struct node **head)
+{
+	int value;
+	printf("Enter which value you want to delete from linkedlist:");
+	scanf("%d",&value);
+	struct node *p=*head;
+	while(p!=NULL)
+	{
+		if(p->data==value)
+		{
+			break;
+		}
+		p=p->right;
+	}
+	if(p==NULL)
+	{
+		printf("Target value was not already prsnt in the linkedlist\n");
+	}
+	else
+	{
+		struct node *q=p->left;
+		if(q==NULL)
+		{
+			if(p->right==NULL)
+			{
+				*head=NULL;
+			}
+			else
+			{
+				*head=p->right;
+				p->right->left=NULL;
+			}
+		}
+	}
+}
 	int main()
 {
 	struct node *head=NULL;
@@ -105,7 +142,7 @@ void insertAtSpecifiedPosition(struct node **head)
 	while(1)
 	{
 		int choice;
-		printf("1) Insert at end 2) Insert at specified position 3) Delete at specified position 4) searching 5) Display 6) Exit\n");
+		printf("1) Insert at end 2) Insert at specified position 3) Delete of a node  4) searching 5) Display 6) Exit\n");
 		printf("Enter your choice:");
 		scanf("%d",&choice);
 		if(choice==1)
@@ -117,16 +154,16 @@ void insertAtSpecifiedPosition(struct node **head)
 		{
 			insertAtSpecifiedPosition(&head);
 		}
-		/*
+		
 		else if(choice==3)
 		{
-			deleteAtSpecifiedPosition(&head);
+			deletion(&head);
 		}
 		else if(choice==4)
 		{
 			searching(&head);
 		}
-		*/
+		
 		else if(choice==5)
 		{
 			display(&head);
